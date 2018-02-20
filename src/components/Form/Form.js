@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import Day from '../Day/Day';
+
 import './Form.css';
 
 class Form extends Component {
   constructor() {
     super();
     this.state = {
-      weather: []
+      weather: [],
+      forecast: []
     }
   }
 
@@ -16,20 +19,42 @@ class Form extends Component {
     return response;
   }
 
+  groupBy(array, property) {
+    return array.reduce(function(groups, item) {
+      const interval = groups[property];
+      groups[interval] = groups[interval] || [];
+      groups[interval].push(interval);
+      return groups;
+    });
+  }
+
   onFormSubmit(e) {
     e.preventDefault();
+    const cityname = e.nativeEvent.target.elements[1].value;
 
-    const cityname = e.nativeEvent.target.elements[0].value;
+    // fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityname}&APPID=DINNYCKELHÄR`)
+    //   .then(this.handleErrors)
+    //   .then(res => res.json())
+    //   .then(res => {
+    //     this.setState({
+    //       weather: res.weather
+    //     }, function() {
+    //       console.log('Hopefully we have some weather', this.state.weather);
+    //     })
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityname}&APPID=`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast/?q=${cityname}&APPID=DINNYCKELHÄR&units=metric`)
       .then(this.handleErrors)
       .then(res => res.json())
       .then(res => {
         this.setState({
-          weather: res.weather
+          forecast: res.list
         }, function() {
-          console.log('Hopefully we have some weather', this.state.weather);
-        })
+          // forecast is now here
+        });
       })
       .catch(function(error) {
         console.log(error);
@@ -53,6 +78,16 @@ class Form extends Component {
             </p>
           </div>
           : <p>No results yet, try searching above.</p>
+        }
+        { this.state.forecast && this.state.forecast.length > 0 ?
+          <div className="App-forecast">
+            {
+              this.state.forecast.map((interval, index) => { 
+                return <Day key={index} interval={interval} />
+              })
+            }
+          </div>
+          : ''
         }
       </div>
     );
