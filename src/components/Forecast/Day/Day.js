@@ -7,11 +7,6 @@ class Day extends Component {
   }
 
   render() {
-    /* :) 
-    const backgroundStyle = {
-      backgroundImage: `url('https://source.unsplash.com/500x150/?${this.props.interval.weather[0].description}&sig=${Math.random()}')`
-    }
-    */
     return (
       <div>
         <div className="row">

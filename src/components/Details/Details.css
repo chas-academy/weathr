@@ -1,0 +1,19 @@
+.App-details-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+}
+
+.App-details {
+  display: inline-flex;
+}
+
+.App-details div {
+  margin-right: 8px;
+}
+
+.App-details .label {
+  font-weight: bold;
+  padding-right: 3px;
+}

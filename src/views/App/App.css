@@ -3,7 +3,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .button-large {
@@ -11,8 +11,4 @@ body {
   height: 4.5rem;
   line-height: 4.5rem;
   padding: 0 2rem;
-}
-
-.App {
-
 }

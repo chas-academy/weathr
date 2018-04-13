@@ -3,3 +3,10 @@
   height: 100vh;
   top: 80px;
 }
+
+.App-content h2 {
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 0.1rem solid #f4f5f6;
+  margin: 0 3.0rem;
+}
